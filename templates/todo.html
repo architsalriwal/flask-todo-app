@@ -1,0 +1,21 @@
+{% extends "layout.html" %} {% block content %}
+<form method="POST" class="task-form">
+  <input type="text" name="content" placeholder="Enter task..." required />
+  <button type="submit">Add Task</button>
+</form>
+
+<table class="task-table">
+  <tr>
+    <th>Task</th>
+    <th>Actions</th>
+  </tr>
+  {% for task in tasks %}
+  <tr>
+    <td>{{ task['content'] }}</td>
+    <td>
+      <a href="{{ url_for('delete', task_id=str(task['_id'])) }}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
